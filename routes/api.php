@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PriceTypeController;
 
@@ -16,4 +17,5 @@ Route::apiResource('price-type', PriceTypeController::class);
 // Route::get('price-type', [PriceTypeController::class, 'index']);
 // Route::post('price-type', [PriceTypeController::class, 'store']);
 
+Route::apiResource('products', ProductController::class);
 

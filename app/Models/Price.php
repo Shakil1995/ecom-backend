@@ -18,11 +18,11 @@ class Price extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function priceTypes()
     {
-        return $this->hasMany(PriceType::class);
+        return $this->belongsTo(PriceType::class, 'price_type_id');
     }
 }
