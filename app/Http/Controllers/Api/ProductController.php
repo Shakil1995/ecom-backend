@@ -12,10 +12,10 @@ use App\Http\Requests\Product\StoreProductRequest;
 
 class ProductController extends Controller
 {
-   
+    private $_getColumns = (['id', 'name', 'category_id']);
     public function index()
     {
-        $products = Product::with('category','prices')->get();
+        $products = Product::with('category','prices')->get($this->_getColumns);
 
         return response()->json([
             'product' => $products
@@ -48,10 +48,14 @@ class ProductController extends Controller
 
     }
 
-    
+    private $_showColumns = (['id', 'name', 'category_id']);
     public function show(Product $product)
     {
-        //
+        $product = Product::with('category','prices')->get('$this->_showColumns')->find($product->id);
+        return response()->json([
+            'message' => "Product Showed Successfully!!",
+            'product' => $product
+        ], 200);
     }
 
   

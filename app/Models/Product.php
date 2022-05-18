@@ -17,10 +17,10 @@ class Product extends Model
         'name',
         'category_id'
     ];
-
+    // private $_getColumns = (['id', 'name', 'is_active']);
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class,'id','name');
     }
 
     public function prices()

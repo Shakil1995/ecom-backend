@@ -31,14 +31,13 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
-    //    dd($request);
+   
         $category = new Category; 
 
-        //insert data
+ 
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
 
-        //save to database
         $category->save();
 
         return response()->json([
@@ -59,7 +58,7 @@ class CategoryController extends Controller
   
     public function edit(Category $category)
     {
-        //
+   
     }
 
     
@@ -68,7 +67,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
 
-        //save to database
+     
         $category->update();
 
         return response()->json([
