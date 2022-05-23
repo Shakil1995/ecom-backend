@@ -13,6 +13,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
+            // $table->bigInteger('price_id')->unsigned();
             $table->string('name', 100);
             $table->string('slug', 100);
 
@@ -27,7 +28,8 @@ return new class extends Migration
 
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')
             ->onDelete('restrict');
-            
+            // $table->foreign('price_id')->references('id')->on('prices')->onUpdate('cascade')
+            // ->onDelete('restrict');
 
             $table->unique(['category_id', 'name'], 'unique_identifier');
         });

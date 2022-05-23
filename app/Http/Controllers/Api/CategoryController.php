@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
         return response()->json([
             'status' => true,
-            'category' => $categories
+            'categories' => $categories
         ], 200);
     }
 
@@ -34,16 +34,17 @@ class CategoryController extends Controller
    
         $category = new Category; 
 
- 
+//  dd($category);
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
 
         $category->save();
-
         return response()->json([
-            'message' => "Category Created Successfully!!",
+            'message' => "Category add Successfully!!",
             'category' => $category
         ], 200);
+
+    //  return redirect('http://127.0.0.1:7000/categories/index');
     }
 
     private $_showColumns = (['id', 'name', 'is_active']);
@@ -70,10 +71,7 @@ class CategoryController extends Controller
      
         $category->update();
 
-        return response()->json([
-            'message' => "Category updated Successfully!!",
-            'category' => $category
-        ], 200);
+        return redirect('http://127.0.0.1:7000/categories/index');
     }
 
     
@@ -81,9 +79,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return response()->json([
-            'message' => "Category Deleted Successfully!!",
-        ], 200);
-    
+        return redirect('http://127.0.0.1:7000/categories/index');
     }
 }
