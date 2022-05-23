@@ -39,12 +39,8 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
 
         $category->save();
-        return response()->json([
-            'message' => "Category add Successfully!!",
-            'category' => $category
-        ], 200);
 
-    //  return redirect('http://127.0.0.1:7000/categories/index');
+ return redirect('http://127.0.0.1:7000/categories/index');
     }
 
     private $_showColumns = (['id', 'name', 'is_active']);
@@ -80,5 +76,16 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect('http://127.0.0.1:7000/categories/index');
+    }
+
+
+    public function toggleStatus(Category $category)
+    {
+        $category->is_active = !$category->is_active;
+        
+
+        $category->update();
+
+        return redirect(config('app.frontend_url').'/categories/index')->with('status','Category STatus has been Toggled Successfully !');
     }
 }
